@@ -1,10 +1,10 @@
 import { Signal, useSignal } from "@preact/signals";
-import { Button } from "../../components/Button.tsx";
 import Addend from "../../islands/Addend.tsx";
 import Selector from "../../islands/Selector.tsx";
+import Player from "../../islands/Player.tsx";
 
 export default function Matsuken() {
-  const cassettes = ["costume", "lemon"];
+  const cassettes = ["costume", "lemon", "roomba"];
   const selection = useSignal(0);
 
   return (
@@ -18,32 +18,32 @@ export default function Matsuken() {
             class="h-32 w-32"
           />
           <p class="text-8xl">+</p>
-          <Addend cassettes={cassettes} selection={selection} />
+          <Addend cassettes={cassettes} selection={selection}/>
         </span>
       </div>
-      <Operations selection={selection} cassette={cassettes} />
+      <Operations selection={selection} cassettes={cassettes}/>
     </div>
   );
 }
 
 type OperationsProps = {
   selection: Signal<number>;
-  cassette: string[];
+  cassettes: string[];
 };
 
-const Operations = ({ selection, cassette }: OperationsProps) => {
+const Operations = ({ selection, cassettes }: OperationsProps) => {
   return (
     <div class="flex justify-center">
-      <Selector selection={selection} cassettes={cassette}>
+      <Selector selection={selection} cassettes={cassettes}>
         <span className="flex">
           <ArrowIcon />Select
         </span>
       </Selector>
-      <Button>
+      <Player selection={selection} cassettes={cassettes}>
         <span class="flex">
-          <MusicIcon />Play
+          <MusicIcon/>Play
         </span>
-      </Button>
+      </Player>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $Addend from "./islands/Addend.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $Player from "./islands/Player.tsx";
 import * as $Selector from "./islands/Selector.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -25,6 +26,7 @@ const manifest = {
   islands: {
     "./islands/Addend.tsx": $Addend,
     "./islands/Counter.tsx": $Counter,
+    "./islands/Player.tsx": $Player,
     "./islands/Selector.tsx": $Selector,
   },
   baseUrl: import.meta.url,
