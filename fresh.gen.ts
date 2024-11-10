@@ -2,16 +2,21 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_matsu_matsuken from "./routes/(matsu)/matsuken.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $Addend from "./islands/Addend.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $Player from "./islands/Player.tsx";
+import * as $Selector from "./islands/Selector.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
+    "./routes/(matsu)/matsuken.tsx": $_matsu_matsuken,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/joke.ts": $api_joke,
@@ -19,7 +24,10 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
+    "./islands/Addend.tsx": $Addend,
     "./islands/Counter.tsx": $Counter,
+    "./islands/Player.tsx": $Player,
+    "./islands/Selector.tsx": $Selector,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
