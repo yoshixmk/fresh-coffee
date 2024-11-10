@@ -19,19 +19,11 @@ export default function Player({
   const cassette = useComputed(() => {
     return cassettes[selection.value];
   });
+  initSpeakers();
 
   const onPlay = () => {
     audioRef.current.play();
-    audioRef.current.onended = () => {
-      let speakText: string;
-      if (isCostume(cassette.value)) {
-        speakText = 'Samba!';
-      }
-      else {
-        speakText = `${cassette.value}!`;
-      }
-      speak(speakText);
-    }
+    speak(cassette.value);
   };
 
   return (
@@ -42,8 +34,20 @@ export default function Player({
   );
 }
 
-const speak = (speakText: string) => {
-  const speechSynthesisUtterance = new SpeechSynthesisUtterance(speakText);
+const initSpeakers = (): void => {
+  // deno-lint-ignore no-window
+  if (window.speechSynthesis) {
+    speechSynthesis.getVoices();
+  }
+}
+
+const speak = (text: string) => {
+  const speechText = isCostume(text) ? 'Samba!' : `${text}`;
+  const speechSynthesisUtterance = new SpeechSynthesisUtterance(`${speechText}!`);
+  speechSynthesisUtterance.voice = window.speechSynthesis.getVoices()[42];
   speechSynthesisUtterance.lang = 'en-US';
-  speechSynthesis.speak(speechSynthesisUtterance);
+  speechSynthesisUtterance.rate = 0.5;
+  setTimeout(() => {
+    speechSynthesis.speak(speechSynthesisUtterance);
+  }, 2000);
 }

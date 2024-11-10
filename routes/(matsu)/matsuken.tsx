@@ -4,7 +4,7 @@ import Selector from "../../islands/Selector.tsx";
 import Player from "../../islands/Player.tsx";
 
 export default function Matsuken() {
-  const cassettes = ["costume", "lemon", "roomba"];
+  const cassettes = ["costume", "lemon", "roomba", "panda", "island"];
   const selection = useSignal(0);
 
   return (
